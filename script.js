@@ -6,7 +6,7 @@ if (name) {
   alert(`Привет, ${name}!`);
   console.log(`Имя: ${name}`);
 } else {
-  alert(`Привет!`);
+  alert('Привет!');
   console.log('Имя не было введено.');
 }
 
@@ -75,3 +75,39 @@ function checkElement(element, elementName) {
 
   return true;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const projectsSection = document.getElementById('projects');
+  const header = projectsSection.querySelector('h3');
+
+  if (
+    checkElement(projectsSection, 'projects-section') &&
+    checkElement(header, 'projects-header')
+  ) {
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'projects-controls';
+
+    const addButton = document.createElement('button');
+    addButton.id = 'add-projects-button';
+    addButton.textContent = 'Добавить проект';
+
+    const removeButton = document.createElement('button');
+    removeButton.id = 'remove-projects-button';
+    removeButton.textContent = 'Удалить последний';
+
+    const switchButton = document.createElement('button');
+    switchButton.id = 'switch-projects-button';
+    switchButton.textContent = 'Свернуть проекты';
+
+    const themeButton = document.createElement('button');
+    themeButton.id = 'theme-switch-button';
+    themeButton.textContent = 'Переключить тему';
+
+    buttonContainer.appendChild(addButton);
+    buttonContainer.appendChild(removeButton);
+    buttonContainer.appendChild(switchButton);
+    buttonContainer.appendChild(themeButton);
+
+    header.parentNode.insertBefore(buttonContainer, header.nextSibling);
+  }
+});
