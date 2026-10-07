@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>О себе</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Вяткин Георгий</h1>
+      <h2>Студент-разработчик</h2>
+
+      <nav class="menu">
+        <a href="#">Главная</a>
+        <a href="#skills">Навыки</a>
+        <a href="#projects">Проекты</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#contacts">Обратная связь</a>
+      </nav>
+
+      <a href="https://github.com/Ashterun">GitHub</a>
+    </header>
+
+    <main>
+      <section id="skills">
+        <h3>Навыки</h3>
+        <div class="skills-grid">
+          <div class="skills-card">
+            C++
+            <div class="badge">Top skill</div>
+          </div>
+          <div class="skills-card">C#</div>
+          <div class="skills-card">JavaScript</div>
+          <div class="skills-card">Python</div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h3>Проекты</h3>
+        <div class="projects-flex">
+          <article class="projects-card">
+            <div class="projects-icon">🎮</div>
+            <div class="projects-info">
+              <h4>2D платформер</h4>
+              <p>Unity, C#, Visual Studio Code, Photoshop</p>
+              <button>Подробнее</button>
+            </div>
+          </article>
+          <article class="projects-card">
+            <div class="projects-icon">🌐</div>
+            <div class="projects-info">
+              <h4>Сайт с алгоритмами</h4>
+              <p>HTML, CSS, JavaScript, Visual Studio Code</p>
+              <button>Подробнее</button>
+            </div>
+          </article>
+          <article class="projects-card">
+            <div class="projects-icon">📝</div>
+            <div class="projects-info">
+              <h4>ToDo-приложение</h4>
+              <p>HTML, CSS, JavaScript, Visual Studio Code</p>
+              <button>Подробнее</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <h3>Скриншоты проектов</h3>
+        <div class="gallery-grid">
+          <figure>
+            <img
+              src="screenshots/screenshot1.png"
+              alt="Скриншот 2D платформера"
+            />
+            <figcaption>2D платформер</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="screenshots/screenshot2.png"
+              alt="Скриншот сайта с алгоритмами"
+            />
+            <figcaption>Сайт с алгоритмами</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="screenshots/screenshot3.png"
+              alt="Скриншот ToDo-приложения"
+            />
+            <figcaption>ToDo-приложение</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <aside>
+        <h3>Любимые технологии</h3>
+        <p>Unity, Visual Studio Code, Blender</p>
+      </aside>
+
+      <img
+        src="https://i.pinimg.com/originals/74/05/f7/7405f728fcfee92d0b8a4e19b56f66a4.jpg?nii=t"
+        alt="Аватар"
+        width="100"
+        height="100"
+      />
+
+      <form id="contacts" action="#" method="post">
+        <div>
+          <label for="name">Имя:</label>
+          <input type="text" id="name" name="Name" placeholder="Имя" />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="Email" placeholder="Email" />
+        </div>
+        <div>
+          <label for="message">Сообщение:</label>
+          <textarea
+            id="message"
+            name="Message"
+            placeholder="Сообщение"
+          ></textarea>
+        </div>
+        <button type="submit">Отправить</button>
+      </form>
+    </main>
+    <footer>© 2026 Вяткин Георгий</footer>
+    <script src="script.js"></script>
+  </body>
+</html>
