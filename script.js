@@ -66,3 +66,12 @@ console.log(`Количество неудовлетворительных ра�
 if (averageScore >= 85) {
     console.log(`Отличная работа! Молодец!`);
 }
+
+function checkElement(element, elementName) {
+  if (!element) {
+    console.error(`Ошибка: элемент "${elementName}" не найден`);
+    return false;
+  }
+
+  return true;
+}
