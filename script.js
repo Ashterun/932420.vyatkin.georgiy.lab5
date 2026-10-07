@@ -92,6 +92,24 @@ function switchTheme() {
   }
 }
 
+function switchProjects() {
+  const projectsContainer = document.querySelector('.projects-flex');
+  const switchButton = document.getElementById('switch-projects-button');
+
+  if (!checkElement(projectsContainer, 'projects-container')) return;
+  if (!checkElement(switchButton, 'switch-projects-button')) return;
+
+  if (projectsContainer.classList.contains('hidden')) {
+    projectsContainer.classList.remove('hidden');
+    switchButton.textContent = 'Свернуть проекты';
+    localStorage.setItem('projects-visible', 'false');
+  } else {
+    projectsContainer.classList.add('hidden');
+    switchButton.textContent = 'Показать проекты';
+    localStorage.setItem('projects-visible', 'true');
+  }
+}
+
 function restoreState() {
   const savedTheme = localStorage.getItem('theme');
 
@@ -137,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     header.parentNode.insertBefore(buttonContainer, header.nextSibling);
 
+    switchButton.addEventListener('click', switchProjects);
     themeButton.addEventListener('click', switchTheme);
 
     restoreState();
