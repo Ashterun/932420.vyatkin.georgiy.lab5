@@ -76,6 +76,33 @@ function checkElement(element, elementName) {
   return true;
 }
 
+function switchTheme() {
+  const body = document.body;
+
+  if (!checkElement(body, 'body')) return;
+
+  if (body.classList.contains('theme-light')) {
+    body.classList.remove('theme-light');
+    body.classList.add('theme-dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    body.classList.remove('theme-dark');
+    body.classList.add('theme-light');
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+function restoreState() {
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme === 'dark') {
+    document.body.classList.add('theme-dark');
+  } else {
+    document.body.classList.add('theme-light');
+  }
+
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const projectsSection = document.getElementById('projects');
   const header = projectsSection.querySelector('h3');
@@ -109,5 +136,9 @@ document.addEventListener('DOMContentLoaded', function () {
     buttonContainer.appendChild(themeButton);
 
     header.parentNode.insertBefore(buttonContainer, header.nextSibling);
+
+    themeButton.addEventListener('click', switchTheme);
+
+    restoreState();
   }
 });
