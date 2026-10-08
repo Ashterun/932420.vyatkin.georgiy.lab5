@@ -76,6 +76,56 @@ function checkElement(element, elementName) {
   return true;
 }
 
+function createProjectCard(projectName, projectDescription) {
+  const article = document.createElement('article');
+  article.className = 'projects-card';
+
+  const iconDiv = document.createElement('div');
+  iconDiv.className = 'projects-icon';
+  iconDiv.textContent = '📌';
+
+  const infoDiv = document.createElement('div');
+  infoDiv.className = 'projects-info';
+
+  const h3 = document.createElement('h3');
+  h3.textContent = projectName;
+
+  const p = document.createElement('p');
+  p.textContent = projectDescription;
+
+  const button = document.createElement('button');
+  button.textContent = 'Подробнее';
+
+  infoDiv.appendChild(h3);
+  infoDiv.appendChild(p);
+  infoDiv.appendChild(button);
+
+  article.appendChild(iconDiv);
+  article.appendChild(infoDiv);
+
+  return article;
+}
+
+function addProject() {
+  const projectsContainer = document.querySelector('.projects-flex');
+  const addButton = document.getElementById('add-projects-button');
+
+  if (!checkElement(projectsContainer, 'projects-container')) return;
+  if (!checkElement(addButton, 'add-projects-button')) return;
+
+  const projectName = prompt('Введите название проекта:');
+
+  if (!projectName) return;
+
+  const projectDescription = prompt('Введите описание проекта:');
+
+  if (!projectDescription) return;
+
+  const article = createProjectCard(projectName, projectDescription);
+  projectsContainer.appendChild(article);
+}
+
+
 function switchTheme() {
   const body = document.body;
 
@@ -155,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     header.parentNode.insertBefore(buttonContainer, header.nextSibling);
 
+    addButton.addEventListener('click', addProject);
     switchButton.addEventListener('click', switchProjects);
     themeButton.addEventListener('click', switchTheme);
 
