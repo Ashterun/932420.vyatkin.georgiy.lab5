@@ -125,6 +125,22 @@ function addProject() {
   projectsContainer.appendChild(article);
 }
 
+function removeLastProject() {
+  const projectsContainer = document.querySelector('.projects-flex');
+  const removeButton = document.getElementById('remove-projects-button');
+
+  if (!checkElement(projectsContainer, 'projects-container')) return;
+  if (!checkElement(removeButton, 'remove-projects-button')) return;
+
+  const projects = projectsContainer.querySelectorAll('.projects-card');
+
+  if (projects.length > 0) {
+    projects[projects.length - 1].remove();
+  } else {
+    console.log('Нет проектов для удаления');
+    alert('Список пуст');
+  }
+}
 
 function switchTheme() {
   const body = document.body;
@@ -206,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
     header.parentNode.insertBefore(buttonContainer, header.nextSibling);
 
     addButton.addEventListener('click', addProject);
+    removeButton.addEventListener('click', removeLastProject);
     switchButton.addEventListener('click', switchProjects);
     themeButton.addEventListener('click', switchTheme);
 
