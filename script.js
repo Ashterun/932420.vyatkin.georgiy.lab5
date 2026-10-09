@@ -76,6 +76,31 @@ function checkElement(element, elementName) {
   return true;
 }
 
+function saveProjects() {
+  const projectsContainer = document.querySelector('.projects-flex');
+
+  if (!checkElement(projectsContainer, 'projects-container')) return;
+
+  const projects = projectsContainer.querySelectorAll('.projects-card');
+  const projectsData = [];
+
+  projects.forEach((project, index) => {
+    if (index > 2) {
+      const h3 = project.querySelector('h3');
+      const p = project.querySelector('p');
+
+      if (h3 && p) {
+        projectsData.push({
+          name: h3.textContent,
+          description: p.textContent,
+        });
+      }
+    }
+  });
+
+  localStorage.setItem('custom-projects', JSON.stringify(projectsData));
+}
+
 function createProjectCard(projectName, projectDescription) {
   const article = document.createElement('article');
   article.className = 'projects-card';
@@ -123,6 +148,7 @@ function addProject() {
 
   const article = createProjectCard(projectName, projectDescription);
   projectsContainer.appendChild(article);
+  saveProjects();
 }
 
 function removeLastProject() {
@@ -136,6 +162,7 @@ function removeLastProject() {
 
   if (projects.length > 0) {
     projects[projects.length - 1].remove();
+    saveProjects();
   } else {
     console.log('Нет проектов для удаления');
     alert('Список пуст');
@@ -185,6 +212,41 @@ function restoreState() {
     document.body.classList.add('theme-light');
   }
 
+  const projectsVisible = localStorage.getItem('projects-visible');
+  const projectsContainer = document.querySelector('.projects-flex');
+  const switchButton = document.getElementById('switch-projects-button');
+
+  if (
+    checkElement(projectsContainer, 'projects-container') &&
+    checkElement(switchButton, 'switch-projects-button')
+  ) {
+    if (projectsVisible === 'false') {
+      projectsContainer.classList.add('hidden');
+      switchButton.textContent = 'Показать проекты';
+    } else {
+      projectsContainer.classList.remove('hidden');
+      switchButton.textContent = 'Свернуть проекты';
+    }
+  }
+
+  const savedProjects = localStorage.getItem('custom-projects');
+
+  if (savedProjects) {
+    try {
+      const projectsData = JSON.parse(savedProjects);
+      const projectsContainer = document.querySelector('.projects-flex');
+
+      if (checkElement(projectsContainer, 'projects-container')) {
+        projectsData.forEach((project) => {
+          const article = createProjectCard(project.name, project.description);
+
+          projectsContainer.appendChild(article);
+        });
+      }
+    } catch (error) {
+      console.error('Ошибка при восстановлении проектов:', error);
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
